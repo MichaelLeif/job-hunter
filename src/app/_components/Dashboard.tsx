@@ -1,25 +1,18 @@
 import React from 'react'
 import NavBar from './NavBar'
 import SubBar from './SubBar'
-import JobCards from './JobCards'
-import { db } from '../_db';
+import Jobs from './Jobs'
+import { getServerSession } from 'next-auth';
 
 export default async function Dashboard() {
-  const jobs = await db.query.jobs.findMany();
-
+  const session = await getServerSession();
   return (
-    <div className="flex flex-col w-screen">
+    <div className="flex flex-col w-screen  overflow-y-auto pb-10">
       <NavBar />
       <div className="flex items-end justify-end px-10">
           <SubBar />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-10">
-          {
-              jobs.map((job, index) => (
-                  <JobCards key={index} job={job} />
-              ))
-          }
-      </div>
+      <Jobs />
     </div>
   )
 }
