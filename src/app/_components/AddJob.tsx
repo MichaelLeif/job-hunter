@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export default function AddJob() {
   const [jobModal, setJobModal] = useState(false)
-
+  
   return (
     <>
       <Button onClick={() => setJobModal(true)} className="text-white inline-flex justify-center items-center gap-x-1.5 ring-1 ring-slate-400/30 rounded-md px-3 py-2 text-sm font-semibold shadow-sm hover:bg-gray-500/50">

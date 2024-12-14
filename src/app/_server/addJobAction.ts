@@ -1,10 +1,10 @@
 'use server'
 
-import React from 'react'
 import { db } from '../_db';
 import { getServerSession } from 'next-auth';
 import { jobs } from '../_db/schema'
 import { authOptions } from '../auth';
+import { revalidatePath } from 'next/cache';
 
 export default async function addJobAction(data: FormData) {
   try {
@@ -21,7 +21,7 @@ export default async function addJobAction(data: FormData) {
       confidence: parseInt(confidence),
       userId: session.user.id,
     });
-
+    revalidatePath('/');
     return { success: true };
   } catch (error) {
     console.error('Error inserting job:', error);
