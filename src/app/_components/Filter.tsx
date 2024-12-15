@@ -1,7 +1,8 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { FilterTypeFunction, FilterTypes } from '../_types/filterTypes'
 
-export default function Filter() {
+export default function Filter({ setFilter }: FilterTypeFunction) {
     return (
         <Menu as="div" className="relative inline-block text-left">
         <div>
@@ -17,39 +18,29 @@ export default function Filter() {
         >
             <div>
             <MenuItem>
-                <a
-                href="#"
+                <span
+                onClick={() => setFilter(FilterTypes.CONFIDENCE)}
                 className="block px-4 py-2 text-sm data-[focus]:bg-gray-500/50 rounded-t-md data-[focus]:outline-none"
                 >
-                    Job title
-                </a>
+                    Confidence
+                </span>
             </MenuItem>
             <MenuItem>
-                <a
-                href="#"
+                <span
+                onClick={() => setFilter(FilterTypes.ALPHABETICAL)}
                 className="block px-4 py-2 text-sm data-[focus]:bg-gray-500/50 data-[focus]:outline-none"
                 >
-                    Support
-                </a>
+                    A - Z
+                </span>
             </MenuItem>
             <MenuItem>
-                <a
-                href="#"
-                className="block px-4 py-2 text-sm data-[focus]:bg-gray-500/50 data-[focus]:outline-none"
+                <span
+                onClick={() => setFilter(FilterTypes.REVERSE_ALPHABETICAL)}
+                className="block px-4 py-2 text-sm data-[focus]:bg-gray-500/50 rounded-b-md data-[focus]:outline-none"
                 >
-                    License
-                </a>
+                    Z - A
+                </span>
             </MenuItem>
-            <form action="#" method="POST">
-                <MenuItem>
-                <button
-                    type="submit"
-                    className="block w-full px-4 py-2 text-left text-sm data-[focus]:bg-gray-500/50 rounded-b-md data-[focus]:outline-none"
-                >
-                    Sign out
-                </button>
-                </MenuItem>
-            </form>
             </div>
         </MenuItems>
         </Menu>
