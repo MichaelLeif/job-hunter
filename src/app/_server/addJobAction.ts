@@ -6,7 +6,7 @@ import { jobs } from '../_db/schema'
 import { authOptions } from '../auth';
 import { revalidatePath } from 'next/cache';
 
-export default async function addJobAction(data: FormData) {
+export default async function addJobAction(data: FormData): Promise<void> {
   try {
     const company = data.get('company');
     const role = data.get('job-role');
@@ -22,9 +22,7 @@ export default async function addJobAction(data: FormData) {
       userId: session.user.id,
     });
     revalidatePath('/');
-    return { success: true };
   } catch (error) {
     console.error('Error inserting job:', error);
-    return { success: false, error };
   }
 }

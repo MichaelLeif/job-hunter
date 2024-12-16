@@ -3,7 +3,3 @@ export enum FilterTypes {
     ALPHABETICAL = 'alphabetical',
     REVERSE_ALPHABETICAL = 'reverse-alphabetical',
 }
-
-export interface FilterTypeFunction {
-    setFilter: (filter: FilterTypes) => void
-}

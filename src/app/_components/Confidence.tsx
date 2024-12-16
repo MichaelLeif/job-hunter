@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react'
 import { MdOutlineSentimentVeryDissatisfied } from "react-icons/md";
 import { MdOutlineSentimentDissatisfied } from "react-icons/md";

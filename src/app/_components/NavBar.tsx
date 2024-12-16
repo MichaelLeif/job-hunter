@@ -12,7 +12,7 @@ export default function NavBar() {
   return (
     <>
       <div className='h-[4rem] w-screen text-white flex justify-between items-center px-10 border-b-[1px] border-slate-400/30'>
-          <span className="text-lg cursor-default">
+          <span onClick={() => router.push('/')} className="text-lg cursor-pointer">
               Job Hunter
           </span>
           {
