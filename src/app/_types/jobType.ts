@@ -2,7 +2,7 @@ export default interface JobType {
     id: number;
     company: string;
     role: string;
-    stage: string | null;
-    confidence: number | null;
+    stage: string;
+    confidence: number;
     userId: string;
 }
