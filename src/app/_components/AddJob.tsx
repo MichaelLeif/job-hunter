@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export default function AddJob() {
   const [jobModal, setJobModal] = useState(false)
   const [query, setQuery] = useState('')
-  const [selected, setSelected] = useState<stageType>(stages[1])
+  const [stage, setStage] = useState<stageType>(stages[1])
   const filteredStages =
     query === ''
       ? stages
@@ -20,7 +20,7 @@ export default function AddJob() {
         });
   const handleValue = (value: stageType | null) => {
     if (value !== null) {
-      setSelected(value);
+      setStage(value);
     }
   };
   return (
@@ -40,7 +40,7 @@ export default function AddJob() {
                 <DialogTitle as="h3" className="text-base/7 font-medium text-white">
                   Add your new job
                 </DialogTitle>
-                <form action={addJobAction} onSubmit={() => setJobModal(false)} className="flex flex-col gap-4">
+                <form action={(e) => addJobAction(e, stage)} onSubmit={() => setJobModal(false)} className="flex flex-col gap-4">
                   <div>
                     <label htmlFor="company" className="text-sm text-white">
                       Company
@@ -66,7 +66,7 @@ export default function AddJob() {
                     <label htmlFor="stage" className="text-sm text-white">
                       Interview stage
                     </label>
-                    <Combobox value={selected} onChange={handleValue} onClose={() => setQuery('')}>
+                    <Combobox value={stage} onChange={handleValue} onClose={() => setQuery('')}>
                       <div className="relative">
                         <ComboboxInput
                           className={clsx(
@@ -94,7 +94,7 @@ export default function AddJob() {
                             value={stage}
                             className="group flex bg-black cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/10"
                           >
-                            <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
+                            <CheckIcon className="invisible size-4 fill-white group-data-[stage]:visible" />
                             <div className="text-sm/6 text-white">{stage.stage}</div>
                           </ComboboxOption>
                         ))}

@@ -34,6 +34,7 @@ export default function Content({ jobs }: {jobs: JobType[]}) {
 
       return getScore(a) - getScore(b);
     });
+    
   jobs = filteredJobs;
 
   jobs.sort((a: JobType, b: JobType) => {
@@ -61,7 +62,7 @@ export default function Content({ jobs }: {jobs: JobType[]}) {
         :
         <div className='h-[50vh] max-h-screen w-screen flex justify-center items-center'>
           <span className='text-center text-lg flex-1'>
-            Add jobs to your profile to see them here
+            Apply to some jobs and add them to your profile to keep track of them!
           </span>
         </div>
       }
