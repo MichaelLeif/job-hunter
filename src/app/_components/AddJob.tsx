@@ -20,7 +20,7 @@ export default function AddJob() {
         });
   const handleValue = (value: stageType | null) => {
     if (value !== null) {
-      setSelected(value); // Only set non-null values
+      setSelected(value);
     }
   };
   return (
