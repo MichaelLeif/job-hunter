@@ -37,7 +37,7 @@ export default function JobCards({ job }: { job: JobType}) {
             {job.role}
           </h2>
         </div>
-        <div className={`${handleJobStageColor(job.stage)} max-h-6 rounded-md`}>
+        <div className={`${handleJobStageColor(job.stage)} flex justify-center items-center rounded-md max-h-12 md:max-h-6`}>
           <span className="mx-2">
             {job.stage}
           </span>

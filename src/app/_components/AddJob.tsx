@@ -16,7 +16,7 @@ export default function AddJob() {
     query === ''
       ? stages
       : stages.filter((stage) => {
-          return stage.stage.toLowerCase().includes(query.toLowerCase())
+          return stage.toLowerCase().includes(query.toLowerCase())
         });
   const handleValue = (value: stageType | null) => {
     if (value !== null) {
@@ -73,7 +73,7 @@ export default function AddJob() {
                             'w-full rounded-lg border border-slate-400/30 bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white',
                             'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
                           )}
-                          displayValue={(stage: stageType) => stage?.stage}
+                          displayValue={(stage: stageType) => stage}
                           onChange={(event) => setQuery(event.target.value)}
                         />
                         <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
@@ -88,14 +88,14 @@ export default function AddJob() {
                           'transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0'
                         )}
                       >
-                        {filteredStages.map((stage) => (
+                        {filteredStages.map((stage: stageType, index: number) => (
                           <ComboboxOption
-                            key={stage.id}
+                            key={index}
                             value={stage}
                             className="group flex bg-black cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/10"
                           >
-                            <CheckIcon className="invisible size-4 fill-white group-data-[stage]:visible" />
-                            <div className="text-sm/6 text-white">{stage.stage}</div>
+                            <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
+                            <div className="text-sm/6 text-white">{stage}</div>
                           </ComboboxOption>
                         ))}
                       </ComboboxOptions>

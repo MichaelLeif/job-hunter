@@ -7,7 +7,7 @@ interface SearchFilterProps {
 
 export default function SearchFilter({ setQuery }: SearchFilterProps) {
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full max-w-md mr-1">
       <Field className="flex justify-center items-center w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white">
         <FaSearch  />
         <Input
