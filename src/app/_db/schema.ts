@@ -79,6 +79,8 @@ export const jobs = pgTable("jobs", {
 	userId: text("userId")
 	  .notNull()
 	  .references(() => users.id, { onDelete: "cascade" }),
-	confidence: integer("confidence"),
+	confidence: integer("confidence")
+    .notNull(),
   stage: varchar({ length: 255 })
+    .notNull()
 });
