@@ -17,7 +17,7 @@ export default async function addJobAction(data: FormData, stage: stageType): Pr
     await db.insert(jobs).values({
       company,
       role,
-      stage: stage.stage,
+      stage: stage,
       confidence: parseInt(confidence),
       userId: session.user.id,
     });
