@@ -3,8 +3,8 @@
 import React, { useState } from 'react'
 import SubBar from './SubBar'
 import Jobs from './Jobs'
-import { FilterTypes } from '../_types/filterTypes'
-import JobType from '../_types/jobType'
+import { FilterTypes } from '../types/filterTypes'
+import JobType from '../types/jobType'
 
 export default function Content({ jobs }: {jobs: JobType[]}) {
   const [filter, setFilter] = useState(FilterTypes.ALPHABETICAL);

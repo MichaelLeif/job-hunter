@@ -1,7 +1,7 @@
 import React from 'react'
 import Filter from './Filter'
 import AddJob from './AddJob'
-import { FilterTypes } from '../_types/filterTypes'
+import { FilterTypes } from '../types/filterTypes'
 import SearchFilter from './SearchFilter'
 
 interface SubBarProps {

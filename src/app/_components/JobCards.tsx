@@ -1,6 +1,6 @@
 import React from 'react'
 import Confidence from './Confidence'
-import JobType from '../_types/jobType'
+import JobType from '../types/jobType'
 
 const handleJobStageColor = (stage: string) => {
   switch (stage) {

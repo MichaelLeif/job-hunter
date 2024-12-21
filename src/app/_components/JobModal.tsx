@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions, Dialog, DialogPanel } from '@headlessui/react'
-import JobType from '../_types/jobType'
+import JobType from '../types/jobType'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
-import { stages, stageType } from '../_types/stageTypes';
+import { stages, stageType } from '../types/stageTypes';
 import clsx from 'clsx';
 import updateJobAction from '../_server/updateJobAction';
 
@@ -90,7 +90,7 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
                   </div>
                   <div className="relative mb-6">
                     <label htmlFor="confidence" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surely your confidence is up now! Believe in yourself!</label>
-                    <input name="confidence" type="range" min="1" max="5" placeholder="1" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input name="confidence" type="range" min="1" max="5" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                     <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">1</span>
                     <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">2</span>
                     <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">3</span>

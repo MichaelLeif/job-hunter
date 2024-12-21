@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { FilterTypes } from '../_types/filterTypes'
+import { FilterTypes } from '../types/filterTypes'
 
 interface FilterProps {
     setFilter: (filter: FilterTypes) => void

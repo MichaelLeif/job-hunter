@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import addJobAction from '../_server/addJobAction';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
-import { stages, stageType } from '../_types/stageTypes';
+import { stages, stageType } from '../types/stageTypes';
 import clsx from 'clsx';
 export const dynamic = "force-dynamic";
 
