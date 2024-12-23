@@ -5,6 +5,7 @@ import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 import { stages, stageType } from '../types/stageTypes';
 import clsx from 'clsx';
 import updateJobAction from '../_server/updateJobAction';
+import deleteJobAction from '../_server/deleteJobAction';
 
 interface JobModalProps {
   job: JobType;
@@ -15,6 +16,7 @@ interface JobModalProps {
 export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
   const [query, setQuery] = useState(job.stage);
   const [stage, setStage] = useState<stageType>(job.stage);
+  const [deleteAction, setDeleteAction] = useState(false);
   const filteredStages =
     query === ''
       ? stages
@@ -34,7 +36,7 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="bg-black w-full max-w-sm  md:max-w-md lg:max-w-lg h-[24rem] space-y-4 rounded-xl ring-1 ring-slate-400/30 p-6"
+              className="bg-black w-full max-w-sm  md:max-w-md lg:max-w-lg h-[27rem] space-y-4 rounded-xl ring-1 ring-slate-400/30 p-6"
             >
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col">
@@ -45,7 +47,15 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
                     {job.role}
                   </span>
                 </div>
-                <form className="flex flex-col gap-4" action={(e) => updateJobAction(e, job.id, stage)} onSubmit={() => setJobModal(false)}>
+                <form className="flex flex-col gap-4" action={(e) => {
+                    if (deleteAction) {
+                      deleteJobAction(job.id);
+                    } else {
+                      updateJobAction(e, job.id, stage);
+                    }
+                  }} 
+                  onSubmit={() => setJobModal(false)}
+                >
                   <span>
                     Update your job details
                   </span>
@@ -99,6 +109,9 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
                   </div>
                   <button type="submit" className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm sm:w-auto bg-blue-600 hover:bg-blue-500">
                     Add
+                  </button>
+                  <button type="submit" onClick={() => setDeleteAction(true)}className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm sm:w-auto bg-blue-600 hover:bg-blue-500">
+                    Delete
                   </button>
                 </form>
               </div>
