@@ -10,7 +10,7 @@ export default function Filter({ setFilter }: FilterProps) {
     return (
         <Menu as="div" className="relative inline-block text-left">
         <div>
-            <MenuButton className="text-white inline-flex w-full justify-center gap-x-1.5 ring-1 ring-slate-400/30 rounded-md px-3 py-2 text-sm font-semibold shadow-sm hover:bg-gray-500/50">
+            <MenuButton className="text-white inline-flex w-[15rem] md:w-[6rem] justify-center gap-x-1.5 ring-1 ring-slate-400/30 rounded-md px-3 py-2 text-sm font-semibold shadow-sm hover:bg-gray-500/50">
                 Sort by
             <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
             </MenuButton>
