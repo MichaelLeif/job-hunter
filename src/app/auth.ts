@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
       },
       async jwt({ token, user }) {
         if (user) {
-          token.id = user.id; // Add the user ID to the JWT
+          token.id = user?.id; // Add the user ID to the JWT
         }
         return token;
       },

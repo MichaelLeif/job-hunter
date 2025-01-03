@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import JobCards from './JobCards';
-import JobType from '../_types/jobType';
+import JobType from '../types/jobType';
 import JobModal from './JobModal';
 
 

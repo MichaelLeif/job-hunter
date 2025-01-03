@@ -8,14 +8,22 @@ import { db } from '../_db';
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
-  const userJobs = await db
-    .select()
-    .from(jobs)
-    .where(eq(jobs.userId, session?.user?.id));
+  if (session?.user?.id) {
+    const userJobs = await db
+      .select()
+      .from(jobs)
+      .where(eq(jobs.userId, session.user.id));
 
     return (
-    <div className="flex flex-col w-screen overflow-y-auto pb-10">
-      <Content jobs={userJobs} />
-    </div>
-  )
+      <div className="flex flex-col w-screen overflow-y-auto pb-10">
+        <Content jobs={userJobs} />
+      </div>
+    )
+  } else {
+    return (
+      <div className="flex flex-col w-screen overflow-y-auto pb-10">
+        No user with that ID was found
+      </div>
+    )
+  }
 }

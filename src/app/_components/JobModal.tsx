@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions, Dialog, DialogPanel } from '@headlessui/react'
-import JobType from '../_types/jobType'
+import JobType from '../types/jobType'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
-import { stages, stageType } from '../_types/stageTypes';
+import { stages, stageType } from '../types/stageTypes';
 import clsx from 'clsx';
 import updateJobAction from '../_server/updateJobAction';
+import deleteJobAction from '../_server/deleteJobAction';
 
 interface JobModalProps {
   job: JobType;
@@ -15,6 +16,7 @@ interface JobModalProps {
 export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
   const [query, setQuery] = useState(job.stage);
   const [stage, setStage] = useState<stageType>(job.stage);
+  const [deleteAction, setDeleteAction] = useState(false);
   const filteredStages =
     query === ''
       ? stages
@@ -34,7 +36,7 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="bg-black w-full max-w-sm  md:max-w-md lg:max-w-lg h-[24rem] space-y-4 rounded-xl ring-1 ring-slate-400/30 p-6"
+              className="bg-black w-full max-w-sm  md:max-w-md lg:max-w-lg h-[27rem] space-y-4 rounded-xl ring-1 ring-slate-400/30 p-6"
             >
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col">
@@ -45,7 +47,15 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
                     {job.role}
                   </span>
                 </div>
-                <form className="flex flex-col gap-4" action={(e) => updateJobAction(e, job.id, stage)} onSubmit={() => setJobModal(false)}>
+                <form className="flex flex-col gap-4" action={(e) => {
+                    if (deleteAction) {
+                      deleteJobAction(job.id);
+                    } else {
+                      updateJobAction(e, job.id, stage);
+                    }
+                  }} 
+                  onSubmit={() => setJobModal(false)}
+                >
                   <span>
                     Update your job details
                   </span>
@@ -90,7 +100,7 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
                   </div>
                   <div className="relative mb-6">
                     <label htmlFor="confidence" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surely your confidence is up now! Believe in yourself!</label>
-                    <input name="confidence" type="range" min="1" max="5" placeholder="1" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
+                    <input name="confidence" type="range" min="1" max="5" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
                     <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">1</span>
                     <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">2</span>
                     <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">3</span>
@@ -99,6 +109,9 @@ export default function JobModal({job, isOpen, setJobModal}: JobModalProps) {
                   </div>
                   <button type="submit" className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm sm:w-auto bg-blue-600 hover:bg-blue-500">
                     Add
+                  </button>
+                  <button type="submit" onClick={() => setDeleteAction(true)}className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm sm:w-auto bg-blue-600 hover:bg-blue-500">
+                    Delete
                   </button>
                 </form>
               </div>
